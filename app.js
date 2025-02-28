@@ -378,7 +378,7 @@ app.get('/success', async(req,res) => {
             idPago,
             productos,
             total,
-            direccion, title: 'Editar', stylesheet: '/estiloEditarBlog.css'
+            direccion, title: 'Pago Realizado'
         })
 
     } catch (error) {
