@@ -1,0 +1,268 @@
+* {
+    font-family: var(--font-family);
+    font-size: 1.01rem;
+}
+
+nav {
+    height: 80px;
+    width: 97%;
+    border: 5px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.boton-ruta-protegida {
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+    z-index: 1100;
+}
+
+.boton-ruta-protegida button {
+    color: white !important;
+    background: var(--bg-color-1);
+    padding: 10px 20px;
+    border: 2px solid black;
+    font-weight: bold;
+}
+
+.div-botones {
+    display: flex; 
+    gap: 80px;
+    margin-left: 50px;
+    align-items: center;
+    justify-content: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.nav-container {
+    display: grid;
+    place-items: center;
+    height: 120px;
+    margin: 0;
+    font-family: var(--font-family);
+    border: 5px solid black;
+    padding: 0px;
+}
+
+:root {
+    --bg-color-1: #121212;
+    --bg-color-2: #FFD433;
+    --bg-color-3: #FF90E8;
+    --padding: 1rem 4rem;
+    --font-family: monospace;
+    --step: 0.5rem;
+}
+
+button {
+    --active: 0;
+    color: white;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-weight: bold;
+    border: 0;
+    background: transparent;
+    padding: 0;
+}
+
+button span:first-of-type {
+    padding: var(--padding);
+}
+
+button span:not(:first-of-type) {
+    position: absolute;
+}
+
+[aria-hidden] {
+    color: transparent;
+}
+
+button span {
+    inset: 0;
+    display: grid;
+    background: var(--bg);
+    place-items: center;
+    transition: 0.2s ease;
+    border: 2px solid black;
+    translate:
+        calc((var(--active) * var(--coefficient, 0)) * (var(--step) * -1)) calc((var(--active) * var(--coefficient, 0)) * (var(--step) * -1));
+}
+
+span:nth-of-type(1) {
+    --bg: var(--bg-color-3);
+}
+
+span:nth-of-type(2) {
+    --coefficient: 1;
+    --bg: var(--bg-color-2);
+}
+
+span:nth-of-type(3) {
+    --coefficient: 2;
+    --bg: var(--bg-color-1);
+}
+
+button:is(:hover, :focus-visible) {
+    --active: 1;
+}
+
+button:active {
+    --active: 0.5;
+}
+
+.separador {
+    border-left: 5px solid black;
+    height: 100px;
+}
+
+.auth-links {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.auth-links a {
+    color: black;
+    text-decoration: none;
+    font-family: var(--font-family);
+}
+
+.auth-links a:hover {
+    text-decoration: underline;
+}
+
+.login-icon {
+    margin-right: 5px;
+}
+
+/* Otros estilos */
+
+/* Estilos para la tabla de la cesta */
+.table-responsive {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #FFD433;
+    color: #333;
+    font-weight: bold;
+}
+
+.table td {
+    background-color: #fff;
+}
+
+.table tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Estilos para la imagen del producto */
+.producto-imagen {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* Estilos para el botón de eliminar */
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Estilos para el resumen de la cesta */
+.cart-summary {
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.cart-summary h4 {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.cart-summary p {
+    margin: 8px 0;
+    font-size: 1rem;
+}
+
+.cart-summary button {
+    background-color: #FFC107;
+    color: #333;
+    padding: 10px 20px;
+    border: none;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cart-summary button:hover {
+    background-color: #e0a800;
+}
+
+/* Estilos para el botón de volver al catálogo */
+.btn-primary {
+    background-color: var(--bg-color-2);
+    color: var(--bg-color-1);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #eabc14;
+}
+
+/* Estilos para el mensaje de cesta vacía */
+.text-muted {
+    color: #6c757d;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 20px;
+}
+
+footer {
+    border: 5px solid black;
+    display: flex;
+    text-align: center;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+}

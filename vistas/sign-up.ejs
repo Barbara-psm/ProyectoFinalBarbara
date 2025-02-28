@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include ('./partials/head.ejs') %>
+
+<body>
+
+    <%- include ('./partials/nav.ejs') %>
+
+    <div class="sign-up-form">
+
+        <h1>Registrarse</h1>
+
+        <form action="/sign-up" method="POST" enctype="multipart/form-data">
+
+            <label for="Correo">Email:</label>
+            <input type="text" name="Correo" id="Correo" required>
+
+            <label for="password">Contraseña:</label>
+            <input type="password" name="password" id="password" required>
+
+            <button type="submit">Registrarse</button>
+        </form>
+
+    </div>
+
+    <%- include ('./partials/footer.ejs') %>
+
+</body>
+</html>

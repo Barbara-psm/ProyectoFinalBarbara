@@ -1,0 +1,266 @@
+* {
+    font-family: var(--font-family);
+    font-size: 1.01rem;
+}
+
+nav {
+    height: 80px;
+    width: 97%;
+    border: 5px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.boton-ruta-protegida {
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+    z-index: 1100;
+}
+
+.boton-ruta-protegida button {
+    color: white !important;
+    background: var(--bg-color-1);
+    padding: 10px 20px;
+    border: 2px solid black;
+    font-weight: bold;
+}
+
+.div-botones {
+    display: flex; 
+    gap: 80px;
+    margin-left: 50px;
+    align-items: center;
+    justify-content: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.nav-container {
+    display: grid;
+    place-items: center;
+    height: 120px;
+    margin: 0;
+    font-family: var(--font-family);
+    border: 5px solid black;
+    padding: 0px;
+}
+
+:root {
+    --bg-color-1: #121212;
+    --bg-color-2: #FFD433;
+    --bg-color-3: #FF90E8;
+    --padding: 1rem 4rem;
+    --font-family: monospace;
+    --step: 0.5rem;
+}
+
+button {
+    --active: 0;
+    color: white;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-weight: bold;
+    border: 0;
+    background: transparent;
+    padding: 0;
+}
+
+button span:first-of-type {
+    padding: var(--padding);
+}
+
+button span:not(:first-of-type) {
+    position: absolute;
+}
+
+[aria-hidden] {
+    color: transparent;
+}
+
+button span {
+    inset: 0;
+    display: grid;
+    background: var(--bg);
+    place-items: center;
+    transition: 0.2s ease;
+    border: 2px solid black;
+    translate:
+        calc((var(--active) * var(--coefficient, 0)) * (var(--step) * -1)) calc((var(--active) * var(--coefficient, 0)) * (var(--step) * -1));
+}
+
+span:nth-of-type(1) {
+    --bg: var(--bg-color-3);
+}
+
+span:nth-of-type(2) {
+    --coefficient: 1;
+    --bg: var(--bg-color-2);
+}
+
+span:nth-of-type(3) {
+    --coefficient: 2;
+    --bg: var(--bg-color-1);
+}
+
+button:is(:hover, :focus-visible) {
+    --active: 1;
+}
+
+button:active {
+    --active: 0.5;
+}
+
+.separador {
+    border-left: 5px solid black;
+    height: 100px;
+}
+
+.auth-links {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.auth-links a {
+    color: black;
+    text-decoration: none;
+    font-family: var(--font-family);
+}
+
+.auth-links a:hover {
+    text-decoration: underline;
+}
+
+.login-icon {
+    margin-right: 5px;
+}
+
+/* Otros estilos */
+
+/* Estilos para el contenedor de blogs */
+.blogs.content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 50vh;
+}
+
+.blogs.content h2 {
+    font-size: 20pt;
+}
+
+/* Estilos para cada tarjeta de blog */
+.blog-card {
+    border: 5px solid var(--bg-color-1);
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    transition: transform 0.3s ease;
+}
+
+.blog-card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.blog-card:hover {
+    transform: scale(1.02);
+}
+
+.blog-card .title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.blog-card .snippet {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.blog-card .categoria {
+    font-size: 0.9em;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.blog-card .fecha {
+    font-size: 0.8em;
+    color: #aaa;
+    margin-bottom: 10px;
+}
+
+.blog-card .blog-image {
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.blog-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.blog-actions .btn-editar, .blog-actions .btn-eliminar {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.blog-actions .btn-editar {
+    background-color: #007BFF;
+    color: white;
+}
+
+.blog-actions .btn-editar:hover {
+    background-color: #0056b3;
+}
+
+.blog-actions .btn-eliminar {
+    background-color: #dc3545;
+    color: white;
+}
+
+.blog-actions .btn-eliminar:hover {
+    background-color: #c82333;
+}
+
+/* Estilos para el botón de crear nuevo blog */
+.nuevo-blog {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.nuevo-blog .btn-crear {
+    padding: 20px 40px;
+    background-color: var(--bg-color-1);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14pt;
+    transition: background-color 0.3s ease;
+}
+
+.nuevo-blog .btn-crear:hover {
+    background-color: var(--bg-color-3);
+    font-weight: bold;
+}
+
+footer {
+    border: 5px solid black;
+    display: flex;
+    text-align: center;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+}

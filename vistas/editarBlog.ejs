@@ -1,0 +1,44 @@
+<html lang="es">
+
+<%- include ('./partials/head.ejs') %>
+
+    <body>
+
+        <%- include ('./partials/nav.ejs') %>
+
+            <div class="edit-blog content">
+                <!-- Formulario para editar blog -->
+                <form action="/blogs/<%= blog.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+                    <label for="title">Título</label>
+                    <input type="text" id="title" name="title" value="<%= blog.title %>" required>
+
+                    <label for="snippet">Resumen (Snippet)</label>
+                    <textarea id="snippet" name="snippet" required><%= blog.snippet %></textarea>
+
+                    <label for="body">Contenido</label>
+                    <textarea id="body" name="body" required><%= blog.body %></textarea>
+
+                    <label for="image">Imagen</label>
+                    <input type="file" id="image" name="image">
+                    <% if (blog.imagePath) { %>
+                        <p>Imagen actual:</p>
+                        <img src="/<%= blog.imagePath %>" alt="Imagen del blog" width="100px">
+                    <% } %>
+
+                        <button type="submit">Guardar Cambios</button>
+                </form>
+
+                <a href="/blogs/<%= blog.id %>">
+                    <button type="button">Cancelar</button>
+                </a>
+
+                <a href="/">
+                    <button type="button">Volver al inicio</button>
+                </a>
+            </div>
+
+            <%- include ('./partials/footer.ejs') %>
+
+    </body>
+
+</html>

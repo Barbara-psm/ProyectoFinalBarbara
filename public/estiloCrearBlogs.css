@@ -1,0 +1,217 @@
+* {
+    font-family: var(--font-family);
+    font-size: 1.01rem;
+}
+
+nav {
+    height: 80px;
+    width: 97%;
+    border: 5px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.boton-ruta-protegida {
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+    z-index: 1100;
+}
+
+.boton-ruta-protegida button {
+    color: white !important;
+    background: var(--bg-color-1);
+    padding: 10px 20px;
+    border: 2px solid black;
+    font-weight: bold;
+}
+
+.div-botones {
+    display: flex; 
+    gap: 80px;
+    margin-left: 50px;
+    align-items: center;
+    justify-content: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.nav-container {
+    display: grid;
+    place-items: center;
+    height: 120px;
+    margin: 0;
+    font-family: var(--font-family);
+    border: 5px solid black;
+    padding: 0px;
+}
+
+:root {
+    --bg-color-1: #121212;
+    --bg-color-2: #FFD433;
+    --bg-color-3: #FF90E8;
+    --padding: 1rem 4rem;
+    --font-family: monospace;
+    --step: 0.5rem;
+}
+
+button {
+    --active: 0;
+    color: white;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-weight: bold;
+    border: 0;
+    background: transparent;
+    padding: 0;
+}
+
+button span:first-of-type {
+    padding: var(--padding);
+}
+
+button span:not(:first-of-type) {
+    position: absolute;
+}
+
+[aria-hidden] {
+    color: transparent;
+}
+
+button span {
+    inset: 0;
+    display: grid;
+    background: var(--bg);
+    place-items: center;
+    transition: 0.2s ease;
+    border: 2px solid black;
+    translate:
+        calc((var(--active) * var(--coefficient, 0)) * (var(--step) * -1)) calc((var(--active) * var(--coefficient, 0)) * (var(--step) * -1));
+}
+
+span:nth-of-type(1) {
+    --bg: var(--bg-color-3);
+}
+
+span:nth-of-type(2) {
+    --coefficient: 1;
+    --bg: var(--bg-color-2);
+}
+
+span:nth-of-type(3) {
+    --coefficient: 2;
+    --bg: var(--bg-color-1);
+}
+
+button:is(:hover, :focus-visible) {
+    --active: 1;
+}
+
+button:active {
+    --active: 0.5;
+}
+
+.separador {
+    border-left: 5px solid black;
+    height: 100px;
+}
+
+.auth-links {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.auth-links a {
+    color: black;
+    text-decoration: none;
+    font-family: var(--font-family);
+}
+
+.auth-links a:hover {
+    text-decoration: underline;
+}
+
+.login-icon {
+    margin-right: 5px;
+}
+
+/* Otros estilos */
+
+/* Estilo general del formulario */
+.crear-blog {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 5px solid black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.crear-blog h1 {
+    text-align: center;
+    font-size: 20pt;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.crear-blog form {
+    display: flex;
+    flex-direction: column;
+}
+
+.crear-blog label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.crear-blog input[type="text"],
+.crear-blog textarea,
+.crear-blog select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.crear-blog textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.crear-blog input[type="file"] {
+    margin-bottom: 15px;
+}
+
+.crear-blog button {
+    padding: 10px 20px;
+    background-color: var(--bg-color-1);
+    color: #fff;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.crear-blog button:hover {
+    background-color: var(--bg-color-3);
+}
+
+footer {
+    border: 5px solid black;
+    display: flex;
+    text-align: center;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+}

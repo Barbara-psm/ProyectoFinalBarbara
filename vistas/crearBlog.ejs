@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include ('./partials/head') %>
+
+<body>
+    <%- include ('./partials/nav') %>
+
+    <div class="crear-blog">
+        <h1>Crear nuevo blog</h1>
+        <% if (typeof error !== 'undefined' && error) { %>
+            <p style="color: red;"><%= error %></p>
+        <% } %>
+        <form action="/blogs" method="POST" enctype="multipart/form-data">
+            <label for="title">Título:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="snippet">Resumen:</label>
+            <textarea id="snippet" name="snippet" required></textarea>
+
+            <label for="body">Contenido:</label>
+            <textarea id="body" name="body" required></textarea>
+
+            <label for="categoria">Categoría:</label>
+            <select id="categoria" name="categoria" required>
+                <option value="">Selecciona una categoría</option>
+                <option value="Tecnología">Tecnología</option>
+                <option value="Viajes">Viajes</option>
+                <option value="Moda">Moda</option>
+                <option value="Salud y Bienestar">Salud y Bienestar</option>
+                <option value="Educación">Educación</option>
+                <option value="Negocios y Finanzas">Negocios y Finanzas</option>
+                <option value="Gastronomía">Gastronomía</option>
+                <option value="Deportes">Deportes</option>
+                <option value="Arte y Diseño">Arte y Diseño</option>
+                <option value="Medio Ambiente">Medio Ambiente</option>
+                <option value="Cine y Televisión">Cine y Televisión</option>
+                <option value="Música">Música</option>
+                <option value="Libros y Literatura">Libros y Literatura</option>
+                <option value="Videojuegos">Videojuegos</option>
+                <option value="Estilo de Vida">Estilo de Vida</option>
+            </select>
+
+            <label for="image">Imagen:</label>
+            <input type="file" id="image" name="image" accept=".jpg" required>
+
+            <button type="submit">Crear blog</button>
+
+            <a href="/blogs">
+                <button type="button">Cancelar</button>
+            </a>
+
+            <a href="/">
+                <button type="button">Volver al inicio</button>
+            </a>
+        </form>
+    </div>
+
+    <%- include ('./partials/footer') %>
+
+</body>
+
+</html>

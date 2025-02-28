@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "@paypal/checkout-server-sdk": "^1.0.3",
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.10.2",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0"
+  },
+  "scripts": {
+    "start": "node app.js"
+  }
+}

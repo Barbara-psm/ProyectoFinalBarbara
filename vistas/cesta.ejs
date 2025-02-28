@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include ('./partials/head.ejs') %>
+        <script
+            src="https://www.paypal.com/sdk/js?client-id=AbntKNmY6k_AaceK9Fa1aQZaUTgZxsVGCp4xI_cTp2v8G28IsYWA4MZ4mNjNGm1c2ka74t2R9rYhRPvr&buyer-country=FR&currency=EUR&components=buttons&enable-funding=card&disable-funding=venmo,paylater"></script>
+</head>
+
+<body>
+    <%- include ('./partials/nav.ejs') %>
+
+    <div class="container py-5">
+
+        <h1 class="text-center mb-4">TU CESTA</h1>
+
+        <% if(cesta.length > 0){ %>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover align-middle">
+
+                    <thead class="table-light">
+
+                        <tr>
+
+                            <th>Imagen</th>
+                            <th>Producto</th>
+                            <th>Precio por unidad</th>
+                            <th>Cantidad</th>
+                            <th>Total</th>
+                            <th>Accion</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <% cesta.forEach(producto => { %>
+
+                            <tr>
+
+                                <td>
+
+                                    <img src="<%= producto.imagenUrl %>"
+                                    alt="<%= producto.nombre %>"
+                                    style="width: 60px; height: 60px; object-fit: cover;"
+
+                                </td>
+
+                                <td><%= producto.nombre %></td>
+                                <td>€<%= producto.precio.toFixed(2) %></td>
+                                <td><%= producto.cantidad %></td>
+                                <td>€<%= (producto.precio* producto.cantidad).toFixed(2) %></td>
+                                <td>
+
+                                    <form action="/cesta/eliminar" method="post" style="display:inline">
+
+                                        <input type="hidden" name="productoId" value="<%= producto.productoId %>">
+                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+
+                                    </form>
+
+                                </td>
+
+                            </tr>
+
+                       <% }) %>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div class="cart-summary"> <!-- Resumen de la cesta -->
+
+                <h4>Resumen</h4>
+
+                <p><strong>Total de productos: </strong> <%= cesta.reduce((acc,producto) => acc+producto.cantidad,0) %></p>
+                <p><strong>Total a pagar: </strong> <%= cesta.reduce((acc,producto) => acc+producto.precio*producto.cantidad,0).toFixed(2) %></p>
+
+            <form action="/cesta/vaciar" method="POST"> <!-- Botón que vacía la cesta -->
+
+                <button type="submit" class="btn btn-warning">Vaciar cesta</button>
+
+            </form>
+
+            <div id="paypal-button-container"></div>
+
+            <script>
+
+                paypal.Buttons({
+                    createOrder: function (data, actions) {
+                        return actions.order.create({
+                            purchase_units: [{
+                                amount: {
+                                    value: '<%= cesta.reduce ((acc, producto) => acc + producto.precio*producto.cantidad,0).toFixed(2) %>'
+                                }
+                            }]
+                        })
+                    },
+                    
+                    onApprove: function(data,actions) {
+                        return actions.order.capture().then(function(details){
+                            window.location.href = "/success?token=" + data.orderID
+                        })
+                    }
+
+                }).render('#paypal-button-container')
+
+            </script>
+
+            </div>
+
+        <%} else { %>
+            <p class="text-center text-muted">Tu cesta está vacía</p>
+        <% } %>
+
+        <div class="mt-4 text-center">
+            <a href="/catalogo" class="btn btn-primary">Volver al catálogo</a>
+        </div>
+
+    </div>
+
+    <%- include ('./partials/footer.ejs') %>
+
+</body>
+
+</html>

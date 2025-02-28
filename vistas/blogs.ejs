@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include ('./partials/head') %>
+
+<body>
+    <%- include ('./partials/nav') %>
+
+    <div class="blogs content">
+        <h2>Todos los blogs 📝</h2>
+
+        <% if (blogs.length > 0) { %>
+            <% blogs.forEach(blog => { %>
+                <div class="blog-card">
+                    <a class="single" href="/blogs/<%= blog._id %>">
+                        <h3 class="title"><%= blog.title %></h3>
+                        <p class="snippet"><%= blog.snippet %></p>
+                        <p class="categoria">Categoría: <%= blog.categoria %></p>
+                        <p class="fecha">Creado el: <%= blog.createdAt.toLocaleDateString() %></p>
+
+                        <% if (blog.imagePath) { %>
+                            <img src="<%= blog.imagePath %>" alt="Imagen del blog" class="blog-image" width="100px" height="100px">
+                        <% } %>
+                    </a>
+
+                    <div class="blog-actions">
+                        <a href="/blogs/<%= blog._id %>/editar" class="btn-editar">Editar</a>
+                        <button onclick="confirmarEliminar('<%= blog._id %>')" class="btn-eliminar">Eliminar</button>
+                    </div>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p>No hay blogs que mostrar</p>
+        <% } %>
+
+        <div class="nuevo-blog">
+            <a href="/blogs/crear" class="btn-crear">Crear nuevo blog</a>
+        </div>
+    </div>
+
+    <%- include ('./partials/footer') %>
+
+    <script>
+        function confirmarEliminar(blogId) {
+            if (confirm("¿Estás seguro de que quieres eliminar este blog?")) {
+                window.location.href = `/blogs/${blogId}/eliminar`;
+            }
+        }
+    </script>
+</body>
+
+</html>

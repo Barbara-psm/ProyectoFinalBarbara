@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('partials/head') %>
+
+<body>
+    <header>
+        <div class="nav-container">
+            <%- include('partials/nav') %>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div class="contenido">
+                <!-- Tarjeta de Blogs -->
+                <div class="tarjeta-Blogs">
+                    <div class="tarjeta-contenido">
+                        <img src="../img/imagenBlogs.jpg" alt="Imagen de Blogs" class="tarjeta-imagen">
+                        <h2 class="tarjeta-titulo">Explora Nuestros Blogs</h2>
+                        <p class="tarjeta-descripcion">
+                            Descubre artículos interesantes, noticias y consejos sobre tecnología, diseño y más.
+                            ¡Amplía tus conocimientos con nuestros blogs!
+                        </p>
+                        <a href="/blogs">
+                            <button>
+                                <span>Paste Link</span>
+                                <span></span>
+                                <span>Ver Blogs</span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Tienda -->
+                <div class="tarjeta-Tienda">
+                    <div class="tarjeta-contenido">
+                        <img src="../img/imagenTienda.jpg" alt="Imagen de Tienda" class="tarjeta-imagen">
+                        <h2 class="tarjeta-titulo">Visita Nuestra Tienda</h2>
+                        <p class="tarjeta-descripcion">
+                            Explora nuestro catálogo de productos. Encuentra lo que necesitas al mejor precio.
+                            ¡Compra ahora y disfruta de envíos rápidos!
+                        </p>
+                        <a href="/catalogo">
+                            <button>
+                                <span>Paste Link</span>
+                                <span></span>
+                                <span>Ver Catálogo</span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+
+</body>
+
+</html>

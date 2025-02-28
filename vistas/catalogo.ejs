@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <%- include ('./partials/head.ejs') %>
+
+    <script>
+
+        function actualizarCantidad(productoId, increment) {
+            const CantidadElemento = document.getElementById(`cantidad-${productoId}`);
+            const entrada = document.getElementById(`entrada-${productoId}`);
+            if(CantidadElemento && entrada) {
+                let valor = parseInt(CantidadElemento.textContent);
+                valor = isNaN(valor) ? 1 : valor + increment //incrementar productos
+                if (valor < 1) valor = 1; // no permite ser menor a 1
+                CantidadElemento.textContent = valor;
+                entrada.value = valor //sincroniza el valor
+            }
+        }
+        
+        // sincronizar el valor antes de enviar el formulario
+        function sincronizarCantidad (productoId) {
+            const CantidadElemento = document.getElementById(`cantidad-${productoId}`);
+            const entrada = document.getElementById(`entrada-${productoId}`);
+            if(CantidadElemento && entrada) {
+                entrada.value = CantidadElemento.textContent // copia el valor del contador
+            }
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <%- include ('./partials/nav.ejs') %>
+
+    <div class="cart-icon">
+        <a href="/cesta" class="`position-relative`">
+
+        <img src="../img/imagenCesta.png" height="80px" width="80px"/>
+
+        <% if(cestaCantidad && cestaCantidad > 0) { %>
+            <span class="cart-badge"> <%= cestaCantidad %> </span>
+        <% } %>
+        </a>
+    </div>
+
+    <div class="container py-5">
+
+        <h1 class="text-center mb-4"> <%=title %> </h1>
+
+        <!-- Contenedor de productos -->
+        <div class="catalogo">
+            <% productos.forEach(producto => { %>
+                <div class="producto">
+                    <% if (producto.imagenUrl) { %>
+                        <img src="<%= producto.imagenUrl %>" alt="<%= producto.nombre %>" class="producto-imagen">
+                    <% } %>
+                    <h3 class="producto-nombre"><%= producto.nombre %></h3>
+                    <p class="producto-descripcion"><%= producto.descripcion %></p>
+                    <p class="producto-precio">€<%= (producto.precio ? Number(producto.precio).toFixed(2) : "0.00") %></p>
+
+                    <!-- Formulario para añadir a la cesta -->
+                    <form action="/add-to-cart" method="POST" onsubmit="sincronizarCantidad('<%= producto._id %>')">
+                        <div class="input-group mb-3" justify-content-center>
+                            <button type="button" class="btn btn-outline-secondary" onclick="actualizarCantidad('<%= producto._id %>', -1)">-</button>
+                            <span id="cantidad-<%= producto._id %>" class="mx-3">1</span>
+                            <button type="button" class="btn btn-outline-secondary" onclick="actualizarCantidad('<%= producto._id %>', 1)">+</button>
+                        </div>
+                        <input type="hidden" name="cantidad" id="entrada-<%= producto._id %>" value="1">
+                        <button type="submit" class="btn btn-primary w-100" name="productoId" value="<%= producto._id %>">
+                            Añadir a la cesta
+                        </button>
+                    </form>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+
+        <%- include ('./partials/footer.ejs') %>
+
+</body>
+
+</html>
